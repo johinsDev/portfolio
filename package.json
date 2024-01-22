@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
     "build:analyze": "ANALYZE=true next build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "dependencies": {
     "clsx": "^2.1.0",
