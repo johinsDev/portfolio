@@ -7,14 +7,23 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
+    fontMetrics: {
+      sans: {
+        capHeight: 2048,
+        ascent: 2728,
+        descent: -680,
+        lineGap: 0,
+        unitsPerEm: 2816,
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("tailwindcss-capsize"),
+  ],
 };
 export default config;
