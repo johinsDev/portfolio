@@ -8,15 +8,23 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "turbo": "next dev --turbo",
+    "dev:turbo": "next dev --turbo",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "type-check": "tsc --noEmit",
-    "check": "pnpm run type-check && pnpm run lint && pnpm run format:check",
+    "check": "pnpm type-check && pnpm lint && pnpm format:check",
     "build:analyze": "ANALYZE=true next build",
+    "test": "vitest",
     "prepare": "husky install",
     "commit": "git-cz",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "turbo:dev": "turbo dev",
+    "turbo:dev-turbo": "turbo dev:turbo",
+    "turbo:build": "turbo build",
+    "turbo:lint": "turbo lint",
+    "turbo:format-check": "turbo format:check",
+    "turbo:type-check": "turbo type-check",
+    "turbo:test": "turbo test"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -35,9 +43,11 @@
     "@commitlint/config-conventional": "^18.5.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@next/bundle-analyzer": "^14.1.0",
+    "@testing-library/react": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.0.1",
     "cssnano": "^6.0.3",
     "eslint": "^8",
@@ -47,6 +57,7 @@
     "eslint-plugin-tailwindcss": "^3.14.0",
     "eslint-plugin-unicorn": "^50.0.1",
     "husky": "^8.0.3",
+    "jsdom": "^24.0.0",
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "prettier": "^3.2.4",
@@ -55,7 +66,8 @@
     "tailwindcss": "^3.3.0",
     "tsx": "^4.7.0",
     "turbo": "^1.11.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.2.1"
   },
   "config": {
     "commitizen": {
