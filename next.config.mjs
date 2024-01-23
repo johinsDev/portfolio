@@ -9,7 +9,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    windowHistorySupport: true,
     clientRouterFilter: false,
   },
 };

@@ -11,11 +11,12 @@
     "turbo": "next dev --turbo",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "typecheck": "tsc --noEmit",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
+    "type-check": "tsc --noEmit",
+    "check": "pnpm run type-check && pnpm run lint && pnpm run format:check",
     "build:analyze": "ANALYZE=true next build",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "clean": "turbo clean"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -38,6 +39,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "cssnano": "^6.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
@@ -52,6 +54,7 @@
     "pretty-quick": "^4.0.0",
     "tailwindcss": "^3.3.0",
     "tsx": "^4.7.0",
+    "turbo": "^1.11.3",
     "typescript": "^5"
   },
   "config": {
