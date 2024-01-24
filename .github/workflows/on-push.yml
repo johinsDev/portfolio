@@ -13,6 +13,10 @@ jobs:
     strategy:
       matrix:
         step: [type-check, lint, format, test, build]
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
     steps:
       - name: 🔸 Setup node
         uses: actions/setup-node@v4
@@ -49,10 +53,22 @@ jobs:
       - name: 🧪 ${{ matrix.step }}
         run: pnpm run turbo:${{ matrix.step }}
 
+      - name: Cache turbo build setup
+        uses: actions/cache@v3
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
   deploy:
     name: 🚀 deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
