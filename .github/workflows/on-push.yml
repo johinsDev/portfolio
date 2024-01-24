@@ -91,7 +91,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright's dependencies
-        run: pnpm exec playwright install chromium
+        run: pnpm exec playwright install
 
       - name: 🧪 Run tests
         run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
