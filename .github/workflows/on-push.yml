@@ -1,0 +1,61 @@
+name: on-push
+
+on: ['push']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  ci:
+    name: 🔁 ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔸 Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🦄 Format
+        run: pnpm turbo:format
+
+      - name: 🎨 Lint
+        run: pnpm turbo:lint
+
+      - name: 🏷️ Type check
+        run: pnpm turbo:type-check
+
+      - name: 👷‍♂️ Build
+        run: pnpm turbo:build
+
+      - name: 🧪 Test
+        run: pnpm turbo:test
+
+# lighthouse, e2e, deploy to vercel, review if is better run pnpm turbo:check, turbo repotoken

@@ -22,7 +22,7 @@
     "turbo:dev-turbo": "turbo dev:turbo",
     "turbo:build": "turbo build",
     "turbo:lint": "turbo lint",
-    "turbo:format-check": "turbo format",
+    "turbo:format": "turbo format",
     "turbo:type-check": "turbo type-check",
     "turbo:test": "turbo test"
   },
