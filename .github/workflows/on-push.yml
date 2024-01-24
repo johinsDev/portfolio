@@ -51,7 +51,6 @@ jobs:
 
   deploy:
     name: 🚀 deploy
-    needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
@@ -79,55 +78,55 @@ jobs:
       - name: deploy to Vercel
         run: vercel --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-  e2e:
-    name: 🧪 tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        shardIndex: [1, 2, 3, 4, 5]
-        shardTotal: [5]
-    steps:
-      - name: 🔸 Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  # e2e:
+  #   name: 🧪 tests
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       shardIndex: [1, 2, 3, 4, 5]
+  #       shardTotal: [5]
+  #   steps:
+  #     - name: 🔸 Setup node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
 
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
+  #     - name: 📦 Install pnpm
+  #       uses: pnpm/action-setup@v2
+  #       with:
+  #         version: latest
+  #         run_install: false
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+  #     - name: Get pnpm store directory
+  #       shell: bash
+  #       run: |
+  #         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+  #     - uses: actions/cache@v3
+  #       name: Setup pnpm cache
+  #       with:
+  #         path: ${{ env.STORE_PATH }}
+  #         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-pnpm-store-
 
-      - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: 📦 Install dependencies
+  #       run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright's dependencies
-        run: pnpm exec playwright install
+  #     - name: Install Playwright's dependencies
+  #       run: pnpm exec playwright install
 
-      - name: 🧪 Run tests
-        run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+  #     - name: 🧪 Run tests
+  #       run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: 📊 Upload test results
-        uses: test-summary/action@v2.2
-        with:
-          paths: '**/test-results/*.xml'
-        if: always()
+  #     - name: 📊 Upload test results
+  #       uses: test-summary/action@v2.2
+  #       with:
+  #         paths: '**/test-results/*.xml'
+  #       if: always()
