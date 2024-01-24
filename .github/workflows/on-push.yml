@@ -34,6 +34,14 @@ jobs:
           version: latest
           run_install: false
 
+      - name: Cache turbo build setup
+        uses: actions/cache@v3
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -52,14 +60,6 @@ jobs:
 
       - name: 🧪 ${{ matrix.step }}
         run: pnpm run turbo:${{ matrix.step }}
-
-      - name: Cache turbo build setup
-        uses: actions/cache@v3
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
 
   deploy:
     name: 🚀 deploy

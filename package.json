@@ -20,7 +20,7 @@
     "clean": "turbo clean",
     "turbo:dev": "turbo dev",
     "turbo:dev-turbo": "turbo dev:turbo",
-    "turbo:build": "turbo build",
+    "turbo:build": "turbo build --cache-dir=.turbo",
     "turbo:lint": "turbo lint",
     "turbo:format": "turbo format",
     "turbo:type-check": "turbo type-check",
