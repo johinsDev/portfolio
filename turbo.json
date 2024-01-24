@@ -3,7 +3,13 @@
   "pipeline": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"],
-      "inputs": ["*", "!.github/workflows/**", "!e2e/**", "!.vscode/**", "!.husky/**"]
+      "inputs": [
+        "*",
+        "!.github/workflows/**",
+        "!e2e/**",
+        "!.vscode/**",
+        "!.husky/**"
+      ]
     },
     "type-check": {},
     "format": {},
