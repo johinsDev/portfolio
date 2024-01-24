@@ -1,5 +1,4 @@
 name: on-push
-# Testing cache
 on: ['push']
 
 concurrency:
@@ -35,6 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'pnpm'
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v2
