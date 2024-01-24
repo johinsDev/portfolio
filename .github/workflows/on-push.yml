@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [type-check, lint, format, test]
+        step: [type-check, lint, format, test, build]
     steps:
       - name: 🔸 Setup node
         uses: actions/setup-node@v4
