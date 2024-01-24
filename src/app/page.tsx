@@ -14,7 +14,7 @@ export default function Home() {
         "transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110",
       )}
     >
-      <h1>FASTER</h1>
+      <h1>UPDATE</h1>
     </main>
   );
 }
