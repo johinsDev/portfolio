@@ -94,7 +94,7 @@ jobs:
         run: pnpm dlx playwright install chromium
 
       - name: 🧪 Run tests
-        run: pnpm dlx playwright test --shard=${{ matrix.shardIndex }} --total=${{ matrix.shardTotal }}
+        run: pnpm dlx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - uses: test-summary/action@v2.0
         with:
