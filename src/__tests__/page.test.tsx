@@ -5,5 +5,5 @@ import Page from "../app/page";
 
 test("Page", () => {
   render(<Page />);
-  expect(screen.getByText("FASTER")).toBeDefined();
+  expect(screen.getByText("UPDATE")).toBeDefined();
 });
