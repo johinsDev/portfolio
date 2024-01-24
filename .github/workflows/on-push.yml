@@ -98,4 +98,4 @@ jobs:
 
       - uses: test-summary/action@v2.0
         with:
-          paths: "results.xml"
+          paths: "e2e-results/results.xml"
