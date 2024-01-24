@@ -59,7 +59,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🧪 ${{ matrix.step }}
-        run: pnpm run turbo:${{ matrix.step }}
+        run: pnpm turbo:${{ matrix.step }}
 
   deploy:
     name: 🚀 deploy
@@ -81,18 +81,25 @@ jobs:
           version: latest
           run_install: false
 
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: install Vercel CLI with pnpm
         run: pnpm install -g vercel@latest
 
-      - name: pull Vercel environment information
-        run:  vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      # - name: pull Vercel environment information
+      #   run:  vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: build project artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      # - name: build project artifacts
+      #   run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: deploy to Vercel
-        run: vercel --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   # e2e:
   #   name: 🧪 tests
