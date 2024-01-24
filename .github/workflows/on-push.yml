@@ -43,19 +43,21 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🦄 Format
-        run: pnpm turbo:format
+      - name: 🚀 Check
+        run: pnpm turbo:check
+      # - name: 🦄 Format
+      #   run: pnpm turbo:format
 
-      - name: 🎨 Lint
-        run: pnpm turbo:lint
+      # - name: 🎨 Lint
+      #   run: pnpm turbo:lint
 
-      - name: 🏷️ Type check
-        run: pnpm turbo:type-check
+      # - name: 🏷️ Type check
+      #   run: pnpm turbo:type-check
 
       - name: 👷‍♂️ Build
         run: pnpm turbo:build
 
-      - name: 🧪 Test
-        run: pnpm turbo:test
+      # - name: 🧪 Test
+      #   run: pnpm turbo:test
 
 # lighthouse, e2e, deploy to vercel, review if is better run pnpm turbo:check, turbo repotoken
