@@ -44,7 +44,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🚀 Check
-        run: pnpm turbo:check
+        run: pnpm check
       # - name: 🦄 Format
       #   run: pnpm turbo:format
 
