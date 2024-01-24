@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [type-check, lint, format]
+        step: [type-check, lint, format, test]
     steps:
       - name: 🔸 Setup node
         uses: actions/setup-node@v4
@@ -49,12 +49,14 @@ jobs:
       - name: 🧪 ${{ matrix.step }}
         run: pnpm run turbo:${{ matrix.step }}
 
-  tests:
+  e2e:
     name: 🧪 tests
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        step: [test]
+        shardIndex: [1, 2, 3, 4, 5]
+        shardTotal: [5]
     steps:
       - name: 🔸 Setup node
         uses: actions/setup-node@v4
@@ -88,12 +90,12 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🧪 ${{ matrix.step }}
-        run: pnpm run ${{ matrix.step }}
-      # - name: 🚀 Check
-      #   run: pnpm check
+      - name: Install Playwright's dependencies
+        run: pnpm dlx playwright install chromium
 
-      # - name: 👷‍♂️ Build
-      #   run: pnpm turbo:build
+      - name: 🧪 Run tests
+        run: pnpm dlx playwright test --shard=${{ matrix.shardIndex }} --total=${{ matrix.shardTotal }}
 
-# lighthouse, e2e, deploy to vercel, review if is better run pnpm turbo:check, turbo repotoken
+      - uses: test-summary/action@v2.0
+        with:
+          paths: "results.xml"
