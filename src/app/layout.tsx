@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
@@ -25,6 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={cn(inter.className)} suppressHydrationWarning={true}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div id='progress' />
           <Header />
           {children}
           <Footer />

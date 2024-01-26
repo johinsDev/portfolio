@@ -86,4 +86,22 @@
       --bg-animation-header: hsl(var(--accent));
     }
   }
+
+  #progress {
+    @apply bg-primary fixed inset-y-0 right-0 z-50 w-1;
+
+    animation: progress-animation auto linear;
+    animation-duration: 0.7;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes progress-animation {
+    0% {
+      height: 0;
+    }
+
+    100% {
+      height: 100%;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 "use client";
 
+import { motion, } from "framer-motion";
 import { PropsWithChildren } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -9,9 +9,7 @@ const variants = {
 };
 
 export default function Template({ children }: PropsWithChildren) {
-  const { scrollYProgress } = useScroll();
 
-  const translateY = useTransform(scrollYProgress, [0, 1], ["-100%", "0%"]);
 
   return (
     <>
@@ -27,12 +25,6 @@ export default function Template({ children }: PropsWithChildren) {
       >
         {children}
       </motion.div>
-      <motion.span
-        className="bg-primary fixed inset-y-0 right-0 z-50 w-1 transition-all duration-700"
-        style={{
-          translateY,
-        }}
-      />
 
       <div
         style={{
