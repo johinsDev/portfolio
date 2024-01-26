@@ -17,6 +17,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ["var(--font-inter)", "sans-serif"],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -71,6 +74,33 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        hero: "url(/assets/hero/hero-bg.png)",
+      },
+      maxWidth() {
+        // start from max-w-96: 24rem / 384px next max-w-112: 28rem / 448px ... max-w-384: 96rem / 1536px
+        return new Array(4).fill(0).reduce((acc, _, i) => {
+          const start = 96;
+          const startRem = 24;
+          const rem = (startRem + (i + 1) * 4).toFixed(1);
+          acc[start + (i + 1) * 16] = `${rem}rem`;
+          return acc;
+        }, {});
+      },
+      letterSpacing: {
+        // ex: tracking-1: 0.1px tracking-2: 0.2px ... tracking-40: 4px
+        ...new Array(40).fill(0).reduce((acc, _, i) => {
+          acc[i + 1] = `${((i + 1) * 0.1).toFixed(1)}px`;
+          return acc;
+        }, {}),
+      },
+      lineHeight: {
+        // ex: leading-1: 0.25rem leading-2: 0.5rem ... leading-20: 5rem
+        ...new Array(20).fill(0).reduce((acc, _, i) => {
+          acc[i + 1] = `${(i + 1) * 0.25}rem`;
+          return acc;
+        }, {}),
       },
     },
   },
