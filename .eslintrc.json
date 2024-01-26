@@ -1,19 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:prettier/recommended",
-    "plugin:tailwindcss/recommended"
-  ],
+  "extends": ["next", "prettier", "plugin:tailwindcss/recommended"],
   "plugins": ["unicorn", "tailwindcss"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
     "tailwindcss/no-custom-classname": "off",

@@ -2,14 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**"],
-      "inputs": [
-        "*",
-        "!.github/workflows/**",
-        "!e2e/**",
-        "!.vscode/**",
-        "!.husky/**"
-      ]
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "type-check": {},
     "format": {},

@@ -6,6 +6,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,13 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={cn(inter.className)} suppressHydrationWarning={true}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
