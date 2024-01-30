@@ -9,6 +9,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
+    optimizeCss: true,
     clientRouterFilter: false,
   },
 };
