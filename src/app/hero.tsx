@@ -14,10 +14,9 @@ export function Hero() {
     <section className="relative h-[84vh] py-12 xl:py-24 xl:pt-28 dark:bg-none">
       <Image
         src="/assets/hero/hero-bg.png"
-        layout="fill"
-        objectFit="cover"
-        alt=""
-        className="-z-10 dark:hidden"
+        alt="Hero background"
+        fill
+        className="-z-10 object-contain object-bottom dark:hidden"
         priority
       />
       <div className="container mx-auto">

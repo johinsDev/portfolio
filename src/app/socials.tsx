@@ -11,7 +11,7 @@ const icons = [
     icon: <RiLinkedinFill />,
   },
   {
-    path: "test",
+    path: "https://www.linkedin.com/in/johan-villamil-9a1a6b1b4/",
     icon: <RiGithubFill />,
   },
 ];
@@ -29,6 +29,7 @@ export function Socials(props: SocialsProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground hover:text-primary text-base transition-all"
+            aria-label={icon.path}
           >
             {icon.icon}
           </Link>
