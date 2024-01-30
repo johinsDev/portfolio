@@ -1,12 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Download, Send } from "lucide-react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import { BgShape } from "@/components/icons/bg-shape-2";
+
+import { DevImg } from "./dev-img";
+import { Socials } from "./socials";
 
 export function Hero() {
   return (
-    <section className="bg-hero h-[84vh] bg-cover bg-bottom bg-no-repeat py-12 xl:py-24 xl:pt-28 dark:bg-none">
+    <section className="relative h-[84vh] py-12 xl:py-24 xl:pt-28 dark:bg-none">
+      <Image
+        src="/assets/hero/hero-bg.png"
+        layout="fill"
+        objectFit="cover"
+        alt=""
+        className="-z-10 dark:hidden"
+        priority
+      />
       <div className="container mx-auto">
         <div className="flex justify-between gap-x-8">
           <div className="mx-auto flex max-w-screen-sm flex-col justify-center text-center xl:mx-0 xl:text-left">
@@ -36,8 +49,15 @@ export function Hero() {
                 Download CV <Download size={18} />
               </Button>
             </div>
+
+            <Socials />
           </div>
-          <div className="relative hidden xl:flex">Image</div>
+
+          <div className="relative hidden xl:flex">
+            <BgShape className="absolute -top-1 right-8 -z-10 text-[#FE705A] dark:text-[#7779ac]" />
+
+            <DevImg />
+          </div>
         </div>
 
         <div className="absolute bottom-44 left-2/4 hidden animate-bounce md:flex xl:bottom-12">
