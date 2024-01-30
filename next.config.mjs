@@ -10,7 +10,6 @@ const nextConfig = {
   },
   experimental: {
     clientRouterFilter: false,
-    optimizeCss: true,
   },
 };
 
