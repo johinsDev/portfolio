@@ -16,7 +16,7 @@ export function Hero() {
         src="/assets/hero/hero-bg.png"
         alt="Hero background"
         fill
-        className="-z-10 object-contain object-bottom dark:hidden"
+        className="-z-10 object-cover object-bottom dark:hidden"
         priority
       />
       <div className="container mx-auto">
